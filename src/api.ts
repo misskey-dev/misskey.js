@@ -22,7 +22,7 @@ export function request<E extends keyof Endpoints>(
 			if (res.status === 200) {
 				resolve(body);
 			} else if (res.status === 204) {
-				resolve(null);
+				resolve(null as any);
 			} else {
 				reject(body.error);
 			}
