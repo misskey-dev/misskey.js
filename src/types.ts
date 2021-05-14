@@ -1,4 +1,4 @@
-type ID = string;
+export type ID = string;
 
 export type User = {
 	id: ID;
@@ -71,3 +71,6 @@ export type Instance = {
 		imageUrl: string;
 	}[];
 };
+
+export type UserSorting = '+follower' | '-follower' | '+createdAt' | '-createdAt' | '+updatedAt' | '-updatedAt';
+export type OriginType = 'combined' | 'local' | 'remote';
