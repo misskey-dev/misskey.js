@@ -98,7 +98,7 @@ export type Stats = {
 };
 
 export type Page = {
-	id: string;
+	id: ID;
 	createdAt: Date;
 	updatedAt: Date;
 	userId: User['id'];
