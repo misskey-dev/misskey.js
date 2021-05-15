@@ -1,4 +1,4 @@
-import { ID, Instance, Note, OriginType, User, UserSorting } from './types';
+import { ID, Instance, Note, OriginType, Stats, User, UserSorting } from './types';
 
 type TODO = Record<string, any>;
 
@@ -79,6 +79,7 @@ export type Endpoints = {
 	// room
 
 	// stats
+	'stats': { req: null; res: Stats; };
 
 	// server-info
 

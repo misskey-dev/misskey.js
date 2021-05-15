@@ -72,5 +72,15 @@ export type Instance = {
 	}[];
 };
 
+export type Stats = {
+	notesCount: number;
+	originalNotesCount: number;
+	usersCount: number;
+	originalUsersCount: number;
+	instances: number;
+	driveUsageLocal: number;
+	driveUsageRemote: number;
+};
+
 export type UserSorting = '+follower' | '-follower' | '+createdAt' | '-createdAt' | '+updatedAt' | '-updatedAt';
 export type OriginType = 'combined' | 'local' | 'remote';
