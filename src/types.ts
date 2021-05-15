@@ -97,5 +97,27 @@ export type Stats = {
 	driveUsageRemote: number;
 };
 
+export type Page = {
+	id: string;
+	createdAt: Date;
+	updatedAt: Date;
+	userId: User['id'];
+	user: User;
+	content: Record<string, any>[];
+	variables: Record<string, any>[];
+	title: string;
+	name: string;
+	summary: string | null;
+	hideTitleWhenPinned: boolean;
+	alignCenter: boolean;
+	font: string;
+	script: string;
+	eyeCatchingImageId: DriveFile['id'] | null;
+	eyeCatchingImage: DriveFile | null;
+	attachedFiles: any;
+	likedCount: number;
+	isLiked?: boolean;
+};
+
 export type UserSorting = '+follower' | '-follower' | '+createdAt' | '-createdAt' | '+updatedAt' | '-updatedAt';
 export type OriginType = 'combined' | 'local' | 'remote';

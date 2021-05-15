@@ -1,4 +1,4 @@
-import { ID, Instance, Note, OriginType, ServerInfo, Stats, User, UserSorting } from './types';
+import { ID, Instance, Note, OriginType, Page, ServerInfo, Stats, User, UserSorting } from './types';
 
 type TODO = Record<string, any>;
 
@@ -68,6 +68,13 @@ export type Endpoints = {
 	'page-push': { req: { pageId: ID; event: string; var?: any; }; res: null; };
 
 	// pages
+	'pages/create': { req: TODO; res: Page; };
+	'pages/delete': { req: { pageId: ID; }; res: null; };
+	'pages/featured': { req: null; res: Page[]; };
+	'pages/like': { req: { pageId: ID; }; res: null; };
+	'pages/show': { req: { pageId?: ID; name?: string; username?: string; }; res: Page; };
+	'pages/unlike': { req: { pageId: ID; }; res: null; };
+	'pages/update': { req: TODO; res: null; };
 
 	// ping
 
