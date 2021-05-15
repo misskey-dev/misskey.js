@@ -8,6 +8,7 @@ export type Endpoints = {
 	// admin
 
 	// announcements
+	'announcements': { req: { limit?: number; withUnreads?: boolean; sinceId?: ID; untilId?: ID; }; res: TODO; };
 
 	// antennas
 	'antennas/create': { req: TODO; res: TODO; };
@@ -27,6 +28,7 @@ export type Endpoints = {
 	// clips
 
 	// drive
+	'drive': { req: null; res: { capacity: number; usage: number; }; };
 
 	// federation
 
@@ -63,6 +65,7 @@ export type Endpoints = {
 	// notifications
 
 	// page-push
+	'page-push': { req: { pageId: ID; event: string; var?: any; }; res: null; };
 
 	// pages
 
