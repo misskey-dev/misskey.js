@@ -72,6 +72,21 @@ export type Instance = {
 	}[];
 };
 
+export type ServerInfo = {
+	machine: string;
+	cpu: {
+		model: string;
+		cores: number;
+	};
+	mem: {
+		total: number;
+	};
+	fs: {
+		total: number;
+		used: number;
+	};
+};
+
 export type Stats = {
 	notesCount: number;
 	originalNotesCount: number;

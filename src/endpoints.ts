@@ -1,4 +1,4 @@
-import { ID, Instance, Note, OriginType, Stats, User, UserSorting } from './types';
+import { ID, Instance, Note, OriginType, ServerInfo, Stats, User, UserSorting } from './types';
 
 type TODO = Record<string, any>;
 
@@ -75,6 +75,7 @@ export type Endpoints = {
 	// request-reset-password
 
 	// reset-password
+	'reset-password': { req: { token: string; password: string; }; res: null; };
 
 	// room
 
@@ -82,6 +83,7 @@ export type Endpoints = {
 	'stats': { req: null; res: Stats; };
 
 	// server-info
+	'server-info': { req: null; res: ServerInfo; };
 
 	// sw
 
