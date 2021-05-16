@@ -10,6 +10,14 @@ function urlQuery(obj: {}): string {
 		.reduce((a, [k, v]) => (a[k] = v, a), {} as Record<string, any>));
 }
 
+type FIXME = any;
+
+type ChannelDef = {
+	main: {
+		notification: FIXME;
+	};
+};
+
 /**
  * Misskey stream connection
  */
@@ -38,7 +46,7 @@ export default class Stream extends EventEmitter {
 	}
 
 	@autobind
-	public useSharedConnection(channel: string, name?: string): SharedConnection {
+	public useSharedConnection<C extends keyof ChannelDef>(channel: C, name?: string): SharedConnection<ChannelDef[C]> {
 		let pool = this.sharedConnectionPools.find(p => p.channel === channel);
 
 		if (pool == null) {
@@ -62,7 +70,7 @@ export default class Stream extends EventEmitter {
 	}
 
 	@autobind
-	public connectToChannel(channel: string, params?: any): NonSharedConnection {
+	public connectToChannel<C extends keyof ChannelDef>(channel: C, params?: any): NonSharedConnection<ChannelDef[C]> {
 		const connection = markRaw(new NonSharedConnection(this, channel, params));
 		this.nonSharedConnections.push(connection);
 		return connection;
@@ -227,7 +235,7 @@ class Pool {
 	}
 }
 
-abstract class Connection extends EventEmitter {
+abstract class Connection<Events> extends EventEmitter {
 	public channel: string;
 	protected stream: Stream;
 	public abstract id: string;
@@ -261,7 +269,7 @@ abstract class Connection extends EventEmitter {
 	public abstract dispose(): void;
 }
 
-class SharedConnection extends Connection {
+class SharedConnection<Events> extends Connection<Events> {
 	private pool: Pool;
 
 	public get id(): string {
@@ -288,7 +296,7 @@ class SharedConnection extends Connection {
 	}
 }
 
-class NonSharedConnection extends Connection {
+class NonSharedConnection<Events> extends Connection<Events> {
 	public id: string;
 	protected params: any;
 
