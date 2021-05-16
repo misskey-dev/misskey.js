@@ -18,10 +18,15 @@ type ChannelDef = {
 	};
 };
 
+type StreamEvents = {
+	_connected_: void;
+	_disconnected_: void;
+};
+
 /**
  * Misskey stream connection
  */
-export default class Stream extends EventEmitter {
+export default class Stream extends EventEmitter<StreamEvents> {
 	private stream: ReconnectingWebsocket;
 	public state: 'initializing' | 'reconnecting' | 'connected' = 'initializing';
 	private sharedConnectionPools: Pool[] = [];
@@ -235,7 +240,7 @@ class Pool {
 	}
 }
 
-abstract class Connection<Events> extends EventEmitter {
+abstract class Connection<Events extends Record<string, any> = any> extends EventEmitter<Events> {
 	public channel: string;
 	protected stream: Stream;
 	public abstract id: string;
@@ -269,7 +274,7 @@ abstract class Connection<Events> extends EventEmitter {
 	public abstract dispose(): void;
 }
 
-class SharedConnection<Events> extends Connection<Events> {
+class SharedConnection<Events = any> extends Connection<Events> {
 	private pool: Pool;
 
 	public get id(): string {
@@ -296,7 +301,7 @@ class SharedConnection<Events> extends Connection<Events> {
 	}
 }
 
-class NonSharedConnection<Events> extends Connection<Events> {
+class NonSharedConnection<Events = any> extends Connection<Events> {
 	public id: string;
 	protected params: any;
 
