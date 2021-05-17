@@ -3,6 +3,7 @@ import { EventEmitter } from 'eventemitter3';
 import ReconnectingWebsocket from 'reconnecting-websocket';
 import { stringify } from 'querystring';
 import { markRaw } from '@vue/reactivity';
+import { MeDetailed, MessagingMessage, Note, Notification, PageEvent, User } from './entities';
 
 function urlQuery(obj: {}): string {
 	return stringify(Object.entries(obj)
@@ -14,13 +15,74 @@ type FIXME = any;
 
 type ChannelDef = {
 	main: {
-		notification: FIXME;
+		events: {
+			notification: (payload: Notification) => void;
+			mention: (payload: Note) => void;
+			reply: (payload: Note) => void;
+			renote: (payload: Note) => void;
+			follow: (payload: User) => void; // 自分が他人をフォローしたとき
+			followed: (payload: User) => void; // 他人が自分をフォローしたとき
+			unfollow: (payload: User) => void; // 自分が他人をフォロー解除したとき
+			meUpdated: (payload: MeDetailed) => void;
+			pageEvent: (payload: PageEvent) => void;
+		};
+	};
+	homeTimeline: {
+		events: {
+			note: (payload: Note) => void;
+		};
+	};
+	localTimeline: {
+		events: {
+			note: (payload: Note) => void;
+		};
+	};
+	hybridTimeline: {
+		events: {
+			note: (payload: Note) => void;
+		};
+	};
+	globalTimeline: {
+		events: {
+			note: (payload: Note) => void;
+		};
+	};
+	messaging: {
+		events: {
+			message: (payload: MessagingMessage) => void;
+			deleted: (payload: MessagingMessage['id']) => void;
+			read: (payload: MessagingMessage['id'][]) => void;
+			typing: (payload: User['id']) => void;
+		};
+	};
+};
+
+type NoteUpdatedEvent = {
+	id: Note['id'];
+	type: 'reacted';
+	body: {
+		reaction: string;
+		userId: User['id'];
+	};
+} | {
+	id: Note['id'];
+	type: 'deleted';
+	body: {
+		deletedAt: string;
+	};
+} | {
+	id: Note['id'];
+	type: 'pollVoted';
+	body: {
+		choice: number;
+		userId: User['id'];
 	};
 };
 
 type StreamEvents = {
 	_connected_: void;
 	_disconnected_: void;
+	noteUpdated: (payload: NoteUpdatedEvent) => void;
 };
 
 /**
@@ -51,7 +113,7 @@ export default class Stream extends EventEmitter<StreamEvents> {
 	}
 
 	@autobind
-	public useSharedConnection<C extends keyof ChannelDef>(channel: C, name?: string): SharedConnection<ChannelDef[C]> {
+	public useSharedConnection<C extends keyof ChannelDef>(channel: C, name?: string): SharedConnection<ChannelDef[C]['events']> {
 		let pool = this.sharedConnectionPools.find(p => p.channel === channel);
 
 		if (pool == null) {
@@ -75,7 +137,7 @@ export default class Stream extends EventEmitter<StreamEvents> {
 	}
 
 	@autobind
-	public connectToChannel<C extends keyof ChannelDef>(channel: C, params?: any): NonSharedConnection<ChannelDef[C]> {
+	public connectToChannel<C extends keyof ChannelDef>(channel: C, params?: any): NonSharedConnection<ChannelDef[C]['events']> {
 		const connection = markRaw(new NonSharedConnection(this, channel, params));
 		this.nonSharedConnections.push(connection);
 		return connection;
