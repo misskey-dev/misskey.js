@@ -147,6 +147,12 @@ export type Endpoints = {
 	'drive/folders/update': { req: TODO; res: TODO; };
 	'drive/stream': { req: TODO; res: TODO; };
 
+	// endpoint
+	'endpoint': { req: { endpoint: string; }; res: { params: { name: string; type: string; }[]; }; };
+
+	// endpoints
+	'endpoints': { req: null; res: string[]; };
+
 	// federation
 	'federation/dns': { req: TODO; res: TODO; };
 	'federation/followers': { req: TODO; res: TODO; };
