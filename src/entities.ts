@@ -219,11 +219,15 @@ export type Announcement = {
 	isRead?: boolean;
 };
 
-export type Antenna = {
-	// TODO
-};
+export type Antenna = TODO;
 
 export type App = TODO;
+
+export type AuthSession = {
+	id: ID;
+	app: App;
+	token: string;
+};
 
 export type UserSorting = '+follower' | '-follower' | '+createdAt' | '-createdAt' | '+updatedAt' | '-updatedAt';
 export type OriginType = 'combined' | 'local' | 'remote';
