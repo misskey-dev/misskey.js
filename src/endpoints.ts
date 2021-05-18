@@ -1,4 +1,4 @@
-import { Announcement, Antenna, ID, InstanceMetadata, Note, OriginType, Page, ServerInfo, Stats, User, UserSorting } from './entities';
+import { Announcement, Antenna, App, ID, InstanceMetadata, Note, OriginType, Page, ServerInfo, Stats, User, UserSorting } from './entities';
 
 type TODO = Record<string, any>;
 
@@ -78,8 +78,8 @@ export type Endpoints = {
 	'ap/show': { req: TODO; res: TODO; };
 
 	// app
-	'app/create': { req: TODO; res: TODO; };
-	'app/show': { req: TODO; res: TODO; };
+	'app/create': { req: TODO; res: App; };
+	'app/show': { req: { appId: ID; }; res: App; };
 
 	// auth
 	'auth/accept': { req: TODO; res: TODO; };
