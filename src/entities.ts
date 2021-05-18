@@ -1,4 +1,5 @@
 export type ID = string;
+export type DateString = string;
 
 type TODO = Record<string, any>;
 
@@ -206,6 +207,16 @@ export type PageEvent = {
 	var: any;
 	userId: User['id'];
 	user: User;
+};
+
+export type Announcement = {
+	id: ID;
+	createdAt: DateString;
+	updatedAt: DateString | null;
+	text: string;
+	title: string;
+	imageUrl: string | null;
+	isRead?: boolean;
 };
 
 export type UserSorting = '+follower' | '-follower' | '+createdAt' | '-createdAt' | '+updatedAt' | '-updatedAt';

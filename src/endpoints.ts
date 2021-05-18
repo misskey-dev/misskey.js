@@ -1,4 +1,4 @@
-import { ID, InstanceMetadata, Note, OriginType, Page, ServerInfo, Stats, User, UserSorting } from './entities';
+import { Announcement, ID, InstanceMetadata, Note, OriginType, Page, ServerInfo, Stats, User, UserSorting } from './entities';
 
 type TODO = Record<string, any>;
 
@@ -63,7 +63,7 @@ export type Endpoints = {
 	'admin/relays/remove': { req: TODO; res: TODO; };
 
 	// announcements
-	'announcements': { req: { limit?: number; withUnreads?: boolean; sinceId?: ID; untilId?: ID; }; res: TODO; };
+	'announcements': { req: { limit?: number; withUnreads?: boolean; sinceId?: ID; untilId?: ID; }; res: Announcement[]; };
 
 	// antennas
 	'antennas/create': { req: TODO; res: TODO; };
