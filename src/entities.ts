@@ -30,7 +30,7 @@ export type MeDetailed = User & {
 
 export type DriveFile = {
 	id: ID;
-	createdAt: string;
+	createdAt: DateString;
 	isSensitive: boolean;
 	name: string;
 	thumbnailUrl: string;
@@ -44,7 +44,7 @@ export type DriveFile = {
 
 export type Note = {
 	id: ID;
-	createdAt: string;
+	createdAt: DateString;
 	text: string | null;
 	cw: string | null;
 	user: User;
@@ -59,7 +59,7 @@ export type Note = {
 	myReaction?: string;
 	reactions: Record<string, number>;
 	poll?: {
-		expiresAt: string | null;
+		expiresAt: DateString | null;
 		multiple: boolean;
 		choices: {
 			isVoted: boolean;
@@ -75,7 +75,7 @@ export type Note = {
 
 export type Notification = {
 	id: ID;
-	createdAt: string;
+	createdAt: DateString;
 	isRead: boolean;
 } & ({
 	type: 'reaction';
@@ -130,7 +130,7 @@ export type Notification = {
 
 export type MessagingMessage = {
 	id: ID;
-	createdAt: string;
+	createdAt: DateString;
 	file: DriveFile | null;
 	fileId: DriveFile['id'] | null;
 	isRead: boolean;
@@ -181,8 +181,8 @@ export type Stats = {
 
 export type Page = {
 	id: ID;
-	createdAt: Date;
-	updatedAt: Date;
+	createdAt: DateString;
+	updatedAt: DateString;
 	userId: User['id'];
 	user: User;
 	content: Record<string, any>[];
