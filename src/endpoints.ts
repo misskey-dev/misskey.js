@@ -1,4 +1,4 @@
-import { Announcement, ID, InstanceMetadata, Note, OriginType, Page, ServerInfo, Stats, User, UserSorting } from './entities';
+import { Announcement, Antenna, ID, InstanceMetadata, Note, OriginType, Page, ServerInfo, Stats, User, UserSorting } from './entities';
 
 type TODO = Record<string, any>;
 
@@ -66,12 +66,12 @@ export type Endpoints = {
 	'announcements': { req: { limit?: number; withUnreads?: boolean; sinceId?: ID; untilId?: ID; }; res: Announcement[]; };
 
 	// antennas
-	'antennas/create': { req: TODO; res: TODO; };
-	'antennas/delete': { req: TODO; res: null; };
-	'antennas/list': { req: TODO; res: TODO; };
-	'antennas/notes': { req: TODO; res: TODO; };
-	'antennas/show': { req: TODO; res: TODO; };
-	'antennas/update': { req: TODO; res: TODO; };
+	'antennas/create': { req: TODO; res: Antenna; };
+	'antennas/delete': { req: { antennaId: ID; }; res: null; };
+	'antennas/list': { req: null; res: Antenna[]; };
+	'antennas/notes': { req: TODO; res: Note[]; };
+	'antennas/show': { req: { antennaId: ID; }; res: Antenna; };
+	'antennas/update': { req: TODO; res: Antenna; };
 
 	// ap
 	'ap/get': { req: TODO; res: TODO; };

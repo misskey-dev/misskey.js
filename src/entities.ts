@@ -219,5 +219,9 @@ export type Announcement = {
 	isRead?: boolean;
 };
 
+export type Antenna = {
+	// TODO
+};
+
 export type UserSorting = '+follower' | '-follower' | '+createdAt' | '-createdAt' | '+updatedAt' | '-updatedAt';
 export type OriginType = 'combined' | 'local' | 'remote';
