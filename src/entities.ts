@@ -219,7 +219,22 @@ export type Announcement = {
 	isRead?: boolean;
 };
 
-export type Antenna = TODO;
+export type Antenna = {
+	id: ID;
+	createdAt: DateString;
+	name: string;
+	keywords: string[][]; // TODO
+	excludeKeywords: string[][]; // TODO
+	src: 'home' | 'all' | 'users' | 'list' | 'group';
+	userListId: ID | null; // TODO
+	userGroupId: ID | null; // TODO
+	users: string[]; // TODO
+	caseSensitive: boolean;
+	notify: boolean;
+	withReplies: boolean;
+	withFile: boolean;
+	hasUnreadNote: boolean;
+};
 
 export type App = TODO;
 
