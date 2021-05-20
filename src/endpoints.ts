@@ -7,7 +7,7 @@ type ShowUserReq = { username: string; host?: string; } | { userId: ID; };
 export type Endpoints = {
 	// admin
 	'admin/abuse-user-reports': { req: TODO; res: TODO; };
-	'admin/delete-all-files-of-a-user': { req: TODO; res: null; };
+	'admin/delete-all-files-of-a-user': { req: { userId: User['id'] }; res: null; };
 	'admin/delete-logs': { req: TODO; res: null; };
 	'admin/get-index-stats': { req: TODO; res: TODO; };
 	'admin/get-table-stats': { req: TODO; res: TODO; };
