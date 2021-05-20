@@ -69,7 +69,7 @@ export type Endpoints = {
 	'antennas/create': { req: TODO; res: Antenna; };
 	'antennas/delete': { req: { antennaId: Antenna['id']; }; res: null; };
 	'antennas/list': { req: null; res: Antenna[]; };
-	'antennas/notes': { req: TODO; res: Note[]; };
+	'antennas/notes': { req: { antennaId: Antenna['id']; limit?: number; sinceId?: Note['id']; untilId?: Note['id']; }; res: Note[]; };
 	'antennas/show': { req: { antennaId: Antenna['id']; }; res: Antenna; };
 	'antennas/update': { req: TODO; res: Antenna; };
 
