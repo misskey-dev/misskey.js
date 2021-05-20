@@ -1,8 +1,8 @@
-import { Ad, Announcement, Antenna, App, AuthSession, Clip, DriveFile, DriveFolder, GalleryPost, ID, InstanceMetadata, Note, OriginType, Page, ServerInfo, Stats, User, UserGroup, UserList, UserSorting } from './entities';
+import { Ad, Announcement, Antenna, App, AuthSession, Clip, DriveFile, DriveFolder, GalleryPost, InstanceMetadata, Note, OriginType, Page, ServerInfo, Stats, User, UserGroup, UserList, UserSorting } from './entities';
 
 type TODO = Record<string, any>;
 
-type ShowUserReq = { username: string; host?: string; } | { userId: ID; };
+type ShowUserReq = { username: string; host?: string; } | { userId: User['id']; };
 
 export type Endpoints = {
 	// admin
@@ -63,14 +63,14 @@ export type Endpoints = {
 	'admin/relays/remove': { req: TODO; res: TODO; };
 
 	// announcements
-	'announcements': { req: { limit?: number; withUnreads?: boolean; sinceId?: ID; untilId?: ID; }; res: Announcement[]; };
+	'announcements': { req: { limit?: number; withUnreads?: boolean; sinceId?: Announcement['id']; untilId?: Announcement['id']; }; res: Announcement[]; };
 
 	// antennas
 	'antennas/create': { req: TODO; res: Antenna; };
-	'antennas/delete': { req: { antennaId: ID; }; res: null; };
+	'antennas/delete': { req: { antennaId: Antenna['id']; }; res: null; };
 	'antennas/list': { req: null; res: Antenna[]; };
 	'antennas/notes': { req: TODO; res: Note[]; };
-	'antennas/show': { req: { antennaId: ID; }; res: Antenna; };
+	'antennas/show': { req: { antennaId: Antenna['id']; }; res: Antenna; };
 	'antennas/update': { req: TODO; res: Antenna; };
 
 	// ap
@@ -79,7 +79,7 @@ export type Endpoints = {
 
 	// app
 	'app/create': { req: TODO; res: App; };
-	'app/show': { req: { appId: ID; }; res: App; };
+	'app/show': { req: { appId: App['id']; }; res: App; };
 
 	// auth
 	'auth/accept': { req: { token: string; }; res: null; };
@@ -268,12 +268,12 @@ export type Endpoints = {
 	'my/apps': { req: TODO; res: TODO; };
 
 	// notes
-	'notes': { req: { limit?: number; sinceId?: ID; untilId?: ID; }; res: Note[]; };
+	'notes': { req: { limit?: number; sinceId?: Note['id']; untilId?: Note['id']; }; res: Note[]; };
 	'notes/children': { req: TODO; res: TODO; };
 	'notes/clips': { req: TODO; res: TODO; };
 	'notes/conversation': { req: TODO; res: TODO; };
 	'notes/create': { req: TODO; res: { createdNote: Note }; };
-	'notes/delete': { req: { noteId: ID; }; res: null; };
+	'notes/delete': { req: { noteId: Note['id']; }; res: null; };
 	'notes/favorites/create': { req: TODO; res: TODO; };
 	'notes/favorites/delete': { req: { noteId: Note['id']; }; res: null; };
 	'notes/featured': { req: TODO; res: TODO; };
@@ -290,7 +290,7 @@ export type Endpoints = {
 	'notes/replies': { req: TODO; res: TODO; };
 	'notes/search-by-tag': { req: TODO; res: TODO; };
 	'notes/search': { req: TODO; res: TODO; };
-	'notes/show': { req: { noteId: ID; }; res: Note; };
+	'notes/show': { req: { noteId: Note['id']; }; res: Note; };
 	'notes/state': { req: TODO; res: TODO; };
 	'notes/timeline': { req: TODO; res: TODO; };
 	'notes/unrenote': { req: TODO; res: TODO; };
@@ -304,15 +304,15 @@ export type Endpoints = {
 	'notifications/read': { req: TODO; res: TODO; };
 
 	// page-push
-	'page-push': { req: { pageId: ID; event: string; var?: any; }; res: null; };
+	'page-push': { req: { pageId: Page['id']; event: string; var?: any; }; res: null; };
 
 	// pages
 	'pages/create': { req: TODO; res: Page; };
-	'pages/delete': { req: { pageId: ID; }; res: null; };
+	'pages/delete': { req: { pageId: Page['id']; }; res: null; };
 	'pages/featured': { req: null; res: Page[]; };
-	'pages/like': { req: { pageId: ID; }; res: null; };
-	'pages/show': { req: { pageId?: ID; name?: string; username?: string; }; res: Page; };
-	'pages/unlike': { req: { pageId: ID; }; res: null; };
+	'pages/like': { req: { pageId: Page['id']; }; res: null; };
+	'pages/show': { req: { pageId?: Page['id']; name?: string; username?: string; }; res: Page; };
+	'pages/unlike': { req: { pageId: Page['id']; }; res: null; };
 	'pages/update': { req: TODO; res: null; };
 
 	// ping
@@ -378,6 +378,6 @@ export type Endpoints = {
 	'users/report-abuse': { req: TODO; res: TODO; };
 	'users/search-by-username-and-host': { req: TODO; res: TODO; };
 	'users/search': { req: TODO; res: TODO; };
-	'users/show': { req: ShowUserReq; res: User; } | { req: { userIds: ID[]; }; res: User[]; };
+	'users/show': { req: ShowUserReq; res: User; } | { req: { userIds: User['id'][]; }; res: User[]; };
 	'users/stats': { req: TODO; res: TODO; };
 };
