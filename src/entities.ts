@@ -246,5 +246,7 @@ export type AuthSession = {
 
 export type Ad = TODO;
 
+export type Clip = TODO;
+
 export type UserSorting = '+follower' | '-follower' | '+createdAt' | '-createdAt' | '+updatedAt' | '-updatedAt';
 export type OriginType = 'combined' | 'local' | 'remote';

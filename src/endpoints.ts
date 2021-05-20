@@ -1,4 +1,4 @@
-import { Ad, Announcement, Antenna, App, AuthSession, ID, InstanceMetadata, Note, OriginType, Page, ServerInfo, Stats, User, UserSorting } from './entities';
+import { Ad, Announcement, Antenna, App, AuthSession, Clip, ID, InstanceMetadata, Note, OriginType, Page, ServerInfo, Stats, User, UserSorting } from './entities';
 
 type TODO = Record<string, any>;
 
@@ -46,7 +46,7 @@ export type Endpoints = {
 	'admin/emoji/list': { req: TODO; res: TODO; };
 	'admin/emoji/remove': { req: TODO; res: TODO; };
 	'admin/emoji/update': { req: TODO; res: TODO; };
-	'admin/federation/delete-all-files': { req: TODO; res: null; };
+	'admin/federation/delete-all-files': { req: { host: string; }; res: null; };
 	'admin/federation/refresh-remote-instance-metadata': { req: TODO; res: TODO; };
 	'admin/federation/remove-all-following': { req: TODO; res: TODO; };
 	'admin/federation/update-instance': { req: TODO; res: TODO; };
@@ -121,7 +121,7 @@ export type Endpoints = {
 	// clips
 	'clips/add-note': { req: TODO; res: TODO; };
 	'clips/create': { req: TODO; res: TODO; };
-	'clips/delete': { req: TODO; res: null; };
+	'clips/delete': { req: { clipId: Clip['id']; }; res: null; };
 	'clips/list': { req: TODO; res: TODO; };
 	'clips/notes': { req: TODO; res: TODO; };
 	'clips/show': { req: TODO; res: TODO; };
