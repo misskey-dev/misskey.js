@@ -1,4 +1,4 @@
-import { Ad, Announcement, Antenna, App, AuthSession, Clip, ID, InstanceMetadata, Note, OriginType, Page, ServerInfo, Stats, User, UserSorting } from './entities';
+import { Ad, Announcement, Antenna, App, AuthSession, Clip, DriveFile, DriveFolder, GalleryPost, ID, InstanceMetadata, Note, OriginType, Page, ServerInfo, Stats, User, UserSorting } from './entities';
 
 type TODO = Record<string, any>;
 
@@ -133,7 +133,7 @@ export type Endpoints = {
 	'drive/files/attached-notes': { req: TODO; res: TODO; };
 	'drive/files/check-existence': { req: TODO; res: TODO; };
 	'drive/files/create': { req: TODO; res: TODO; };
-	'drive/files/delete': { req: TODO; res: null; };
+	'drive/files/delete': { req: { fileId: DriveFile['id']; }; res: null; };
 	'drive/files/find-by-hash': { req: TODO; res: TODO; };
 	'drive/files/find': { req: TODO; res: TODO; };
 	'drive/files/show': { req: TODO; res: TODO; };
@@ -141,7 +141,7 @@ export type Endpoints = {
 	'drive/files/upload-from-url': { req: TODO; res: TODO; };
 	'drive/folders': { req: TODO; res: TODO; };
 	'drive/folders/create': { req: TODO; res: TODO; };
-	'drive/folders/delete': { req: TODO; res: null; };
+	'drive/folders/delete': { req: { folderId: DriveFolder['id']; }; res: null; };
 	'drive/folders/find': { req: TODO; res: TODO; };
 	'drive/folders/show': { req: TODO; res: TODO; };
 	'drive/folders/update': { req: TODO; res: TODO; };
@@ -175,7 +175,7 @@ export type Endpoints = {
 	'gallery/popular': { req: TODO; res: TODO; };
 	'gallery/posts': { req: TODO; res: TODO; };
 	'gallery/posts/create': { req: TODO; res: TODO; };
-	'gallery/posts/delete': { req: TODO; res: null; };
+	'gallery/posts/delete': { req: { postId: GalleryPost['id'] }; res: null; };
 	'gallery/posts/like': { req: TODO; res: TODO; };
 	'gallery/posts/show': { req: TODO; res: TODO; };
 	'gallery/posts/unlike': { req: TODO; res: TODO; };
@@ -204,7 +204,7 @@ export type Endpoints = {
 	'i/apps': { req: TODO; res: TODO; };
 	'i/authorized-apps': { req: TODO; res: TODO; };
 	'i/change-password': { req: TODO; res: TODO; };
-	'i/delete-account': { req: TODO; res: null; };
+	'i/delete-account': { req: { password: string; }; res: null; };
 	'i/export-blocking': { req: TODO; res: TODO; };
 	'i/export-following': { req: TODO; res: TODO; };
 	'i/export-mute': { req: TODO; res: TODO; };
@@ -261,7 +261,7 @@ export type Endpoints = {
 
 	// mute
 	'mute/create': { req: TODO; res: TODO; };
-	'mute/delete': { req: TODO; res: null; };
+	'mute/delete': { req: { userId: User['id'] }; res: null; };
 	'mute/list': { req: TODO; res: TODO; };
 
 	// my
