@@ -1,4 +1,4 @@
-import { Ad, Announcement, Antenna, App, AuthSession, Clip, DriveFile, DriveFolder, GalleryPost, ID, InstanceMetadata, Note, OriginType, Page, ServerInfo, Stats, User, UserSorting } from './entities';
+import { Ad, Announcement, Antenna, App, AuthSession, Clip, DriveFile, DriveFolder, GalleryPost, ID, InstanceMetadata, Note, OriginType, Page, ServerInfo, Stats, User, UserGroup, UserList, UserSorting } from './entities';
 
 type TODO = Record<string, any>;
 
@@ -275,7 +275,7 @@ export type Endpoints = {
 	'notes/create': { req: TODO; res: { createdNote: Note }; };
 	'notes/delete': { req: { noteId: ID; }; res: null; };
 	'notes/favorites/create': { req: TODO; res: TODO; };
-	'notes/favorites/delete': { req: TODO; res: null; };
+	'notes/favorites/delete': { req: { noteId: Note['id']; }; res: null; };
 	'notes/featured': { req: TODO; res: TODO; };
 	'notes/global-timeline': { req: TODO; res: TODO; };
 	'notes/hybrid-timeline': { req: TODO; res: TODO; };
@@ -285,7 +285,7 @@ export type Endpoints = {
 	'notes/polls/vote': { req: TODO; res: TODO; };
 	'notes/reactions': { req: TODO; res: TODO; };
 	'notes/reactions/create': { req: TODO; res: TODO; };
-	'notes/reactions/delete': { req: TODO; res: null; };
+	'notes/reactions/delete': { req: { noteId: Note['id']; }; res: null; };
 	'notes/renotes': { req: TODO; res: TODO; };
 	'notes/replies': { req: TODO; res: TODO; };
 	'notes/search-by-tag': { req: TODO; res: TODO; };
@@ -296,7 +296,7 @@ export type Endpoints = {
 	'notes/unrenote': { req: TODO; res: TODO; };
 	'notes/user-list-timeline': { req: TODO; res: TODO; };
 	'notes/watching/create': { req: TODO; res: TODO; };
-	'notes/watching/delete': { req: TODO; res: null; };
+	'notes/watching/delete': { req: { noteId: Note['id']; }; res: null; };
 
 	// notifications
 	'notifications/create': { req: TODO; res: TODO; };
@@ -354,7 +354,7 @@ export type Endpoints = {
 	'users/gallery/posts': { req: TODO; res: TODO; };
 	'users/get-frequently-replied-users': { req: TODO; res: TODO; };
 	'users/groups/create': { req: TODO; res: TODO; };
-	'users/groups/delete': { req: TODO; res: null; };
+	'users/groups/delete': { req: { groupId: UserGroup['id'] }; res: null; };
 	'users/groups/invitations/accept': { req: TODO; res: TODO; };
 	'users/groups/invitations/reject': { req: TODO; res: TODO; };
 	'users/groups/invite': { req: TODO; res: TODO; };
@@ -365,7 +365,7 @@ export type Endpoints = {
 	'users/groups/transfer': { req: TODO; res: TODO; };
 	'users/groups/update': { req: TODO; res: TODO; };
 	'users/lists/create': { req: TODO; res: TODO; };
-	'users/lists/delete': { req: TODO; res: null; };
+	'users/lists/delete': { req: { listId: UserList['id'] }; res: null; };
 	'users/lists/list': { req: TODO; res: TODO; };
 	'users/lists/pull': { req: TODO; res: TODO; };
 	'users/lists/push': { req: TODO; res: TODO; };
