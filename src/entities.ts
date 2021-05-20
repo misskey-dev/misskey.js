@@ -244,5 +244,7 @@ export type AuthSession = {
 	token: string;
 };
 
+export type Ad = TODO;
+
 export type UserSorting = '+follower' | '-follower' | '+createdAt' | '-createdAt' | '+updatedAt' | '-updatedAt';
 export type OriginType = 'combined' | 'local' | 'remote';

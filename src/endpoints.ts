@@ -1,4 +1,4 @@
-import { Announcement, Antenna, App, AuthSession, ID, InstanceMetadata, Note, OriginType, Page, ServerInfo, Stats, User, UserSorting } from './entities';
+import { Ad, Announcement, Antenna, App, AuthSession, ID, InstanceMetadata, Note, OriginType, Page, ServerInfo, Stats, User, UserSorting } from './entities';
 
 type TODO = Record<string, any>;
 
@@ -29,11 +29,11 @@ export type Endpoints = {
 	'admin/vacuum': { req: TODO; res: TODO; };
 	'admin/accounts/create': { req: TODO; res: TODO; };
 	'admin/ad/create': { req: TODO; res: TODO; };
-	'admin/ad/delete': { req: TODO; res: null; };
+	'admin/ad/delete': { req: { id: Ad['id']; }; res: null; };
 	'admin/ad/list': { req: TODO; res: TODO; };
 	'admin/ad/update': { req: TODO; res: TODO; };
 	'admin/announcements/create': { req: TODO; res: TODO; };
-	'admin/announcements/delete': { req: TODO; res: null; };
+	'admin/announcements/delete': { req: { id: Announcement['id'] }; res: null; };
 	'admin/announcements/list': { req: TODO; res: TODO; };
 	'admin/announcements/update': { req: TODO; res: TODO; };
 	'admin/drive/clean-remote-files': { req: TODO; res: TODO; };
