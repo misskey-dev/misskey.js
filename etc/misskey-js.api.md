@@ -2277,8 +2277,8 @@ type Notification_2 = {
     userId: User['id'];
 } | {
     type: 'app';
-    header: string | null;
-    body?: string | null;
+    header?: string | null;
+    body: string;
     icon?: string | null;
 });
 
