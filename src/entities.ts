@@ -152,10 +152,13 @@ export type Notification = {
 } | {
 	type: 'groupInvited';
 	invitation: UserGroup;
+	user: User;
+	userId: User['id'];
 } | {
 	type: 'app';
-	body: string;
-	icon: string;
+	header: string;
+	body: string | null;
+	icon: string | null;
 });
 
 export type MessagingMessage = {
