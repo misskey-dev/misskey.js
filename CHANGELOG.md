@@ -1,1 +1,1 @@
-- MessagingMessageの型を修正
+- Notificationsの型を修正
