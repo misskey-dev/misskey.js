@@ -2277,9 +2277,9 @@ type Notification_2 = {
     userId: User['id'];
 } | {
     type: 'app';
-    header: string;
-    body: string | null;
-    icon: string | null;
+    header: string | null;
+    body?: string | null;
+    icon?: string | null;
 });
 
 // @public (undocumented)

@@ -156,9 +156,9 @@ export type Notification = {
 	userId: User['id'];
 } | {
 	type: 'app';
-	header: string;
-	body: string | null;
-	icon: string | null;
+	header: string | null;
+	body?: string | null;
+	icon?: string | null;
 });
 
 export type MessagingMessage = {
