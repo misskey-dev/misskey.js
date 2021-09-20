@@ -171,7 +171,10 @@ export type MessagingMessage = {
 	text: string | null;
 	user: User;
 	userId: User['id'];
-	groupId: string; // TODO
+	recipient?: User | null;
+	recipientId: User['id'] | null;
+	group?: UserGroup | null;
+	groupId: UserGroup['id'] | null;
 };
 
 export type CustomEmoji = {
