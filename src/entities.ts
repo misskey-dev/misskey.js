@@ -150,7 +150,8 @@ export type Notification = {
 	user: User;
 	userId: User['id'];
 } | {
-	type: 'groupInvited'; // TODO
+	type: 'groupInvited';
+	invitation: UserGroup;
 } | {
 	type: 'app';
 	body: string;
