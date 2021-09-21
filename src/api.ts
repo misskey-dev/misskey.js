@@ -46,7 +46,7 @@ export class APIClient {
 	}) {
 		this.origin = opts.origin;
 		this.credential = opts.credential;
-		this.fetch = opts.fetch || fetch;
+		this.fetch = opts.fetch || ((...args) => fetch(...args));
 	}
 
 	public request<E extends keyof Endpoints, P extends Endpoints[E]['req']>(
