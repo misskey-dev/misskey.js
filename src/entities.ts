@@ -54,6 +54,7 @@ export type UserDetailed = UserLite & {
 	isSilenced: boolean;
 	isSuspended: boolean;
 	lang: string | null;
+	lastFetchedAt?: DateString;
 	location: string | null;
 	notesCount: number;
 	pinnedNoteIds: ID[];
