@@ -39,7 +39,7 @@ export type Channels = {
 				key: string;
 				value: any | null;
 			}) => void;
-			driveFileCreated: (paload: 'DriveFile') => void;
+			driveFileCreated: (payload: DriveFile) => void;
 			readAntenna: (payload: Antenna) => void;
 		};
 		receives: null;
