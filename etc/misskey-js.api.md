@@ -2047,9 +2047,6 @@ type FetchLike = (input: string, init?: {
 }>;
 
 // @public (undocumented)
-export const ffVisibility: readonly ["public", "followers", "private"];
-
-// @public (undocumented)
 type Following = {
     id: ID;
     createdAt: DateString;
@@ -2181,9 +2178,6 @@ type MessagingMessage = {
 };
 
 // @public (undocumented)
-export const mutedNoteReasons: readonly ["word", "manual", "spam", "other"];
-
-// @public (undocumented)
 type Note = {
     id: ID;
     createdAt: DateString;
@@ -2198,12 +2192,8 @@ type Note = {
     files: DriveFile[];
     fileIds: DriveFile['id'][];
     visibility: 'public' | 'home' | 'followers' | 'specified';
-    visibleUserIds?: User['id'][];
-    localOnly?: boolean;
     myReaction?: string;
     reactions: Record<string, number>;
-    renoteCount: number;
-    repliesCount: number;
     poll?: {
         expiresAt: DateString | null;
         multiple: boolean;
@@ -2217,9 +2207,6 @@ type Note = {
         name: string;
         url: string;
     }[];
-    uri?: string;
-    url?: string;
-    isHidden?: boolean;
 };
 
 // @public (undocumented)
@@ -2237,9 +2224,6 @@ type NoteReaction = {
     user: UserLite;
     type: string;
 };
-
-// @public (undocumented)
-export const noteVisibilities: readonly ["public", "home", "followers", "specified"];
 
 // @public (undocumented)
 type Notification_2 = {
@@ -2302,9 +2286,6 @@ type Notification_2 = {
 });
 
 // @public (undocumented)
-export const notificationTypes: readonly ["follow", "mention", "reply", "renote", "quote", "reaction", "pollVote", "receiveFollowRequest", "followRequestAccepted", "groupInvited", "app"];
-
-// @public (undocumented)
 type OriginType = 'combined' | 'local' | 'remote';
 
 // @public (undocumented)
@@ -2338,9 +2319,6 @@ type PageEvent = {
     userId: User['id'];
     user: User;
 };
-
-// @public (undocumented)
-export const permissions: string[];
 
 // @public (undocumented)
 type ServerInfo = {
@@ -2445,14 +2423,6 @@ type UserLite = {
         name: string;
         url: string;
     }[];
-    instance?: {
-        name: Instance['name'];
-        softwareName: Instance['softwareName'];
-        softwareVersion: Instance['softwareVersion'];
-        iconUrl: Instance['iconUrl'];
-        faviconUrl: Instance['faviconUrl'];
-        themeColor: Instance['themeColor'];
-    };
 };
 
 // @public (undocumented)
