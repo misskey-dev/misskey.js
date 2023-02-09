@@ -324,7 +324,7 @@ export type Endpoints = {
 	'gallery/posts/delete': { req: { postId: GalleryPost['id'] }; res: null; };
 	'gallery/posts/like': { req: { postId: GalleryPost['id'] }; res: null; };
 	'gallery/posts/show': { req: { postId: GalleryPost['id'] }; res: GalleryPost; };
-	'gallery/posts/unlike': { req: TODO; res: TODO; };
+	'gallery/posts/unlike': { req: { postId: GalleryPost['id'] }; res: null; };
 	'gallery/posts/update': { req: TODO; res: TODO; };
 
 	// games

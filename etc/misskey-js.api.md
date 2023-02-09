@@ -1220,8 +1220,10 @@ export type Endpoints = {
         res: GalleryPost;
     };
     'gallery/posts/unlike': {
-        req: TODO;
-        res: TODO;
+        req: {
+            postId: GalleryPost['id'];
+        };
+        res: null;
     };
     'gallery/posts/update': {
         req: TODO;
