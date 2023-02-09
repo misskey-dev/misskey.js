@@ -1193,8 +1193,13 @@ export type Endpoints = {
         res: GalleryPost[];
     };
     'gallery/posts/create': {
-        req: TODO;
-        res: TODO;
+        req: {
+            title: GalleryPost['title'];
+            description?: GalleryPost['description'];
+            fileIds: GalleryPost['fileIds'];
+            isSensitive?: GalleryPost['isSensitive'];
+        };
+        res: GalleryPost;
     };
     'gallery/posts/delete': {
         req: {

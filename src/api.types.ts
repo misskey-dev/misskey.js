@@ -320,7 +320,7 @@ export type Endpoints = {
 	'gallery/featured': { req: null; res: GalleryPost[]; };
 	'gallery/popular': { req: null; res: GalleryPost[]; };
 	'gallery/posts': { req: { limit?: number; sinceId?: GalleryPost['id']; untilId?: GalleryPost['id']; }; res: GalleryPost[]; };
-	'gallery/posts/create': { req: TODO; res: TODO; };
+	'gallery/posts/create': { req: { title: GalleryPost['title']; description?: GalleryPost['description']; fileIds: GalleryPost['fileIds']; isSensitive?: GalleryPost['isSensitive'] }; res: GalleryPost; };
 	'gallery/posts/delete': { req: { postId: GalleryPost['id'] }; res: null; };
 	'gallery/posts/like': { req: TODO; res: TODO; };
 	'gallery/posts/show': { req: TODO; res: TODO; };
