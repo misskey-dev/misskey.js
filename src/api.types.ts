@@ -325,7 +325,7 @@ export type Endpoints = {
 	'gallery/posts/like': { req: { postId: GalleryPost['id'] }; res: null; };
 	'gallery/posts/show': { req: { postId: GalleryPost['id'] }; res: GalleryPost; };
 	'gallery/posts/unlike': { req: { postId: GalleryPost['id'] }; res: null; };
-	'gallery/posts/update': { req: TODO; res: TODO; };
+	'gallery/posts/update': { req: { postId: GalleryPost['id']; title: GalleryPost['title']; description?: GalleryPost['description']; fileIds: GalleryPost['fileIds']; isSensitive?: GalleryPost['isSensitive'] }; res: GalleryPost; };
 
 	// games
 	'games/reversi/games': { req: TODO; res: TODO; };

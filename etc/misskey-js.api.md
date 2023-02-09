@@ -1226,8 +1226,14 @@ export type Endpoints = {
         res: null;
     };
     'gallery/posts/update': {
-        req: TODO;
-        res: TODO;
+        req: {
+            postId: GalleryPost['id'];
+            title: GalleryPost['title'];
+            description?: GalleryPost['description'];
+            fileIds: GalleryPost['fileIds'];
+            isSensitive?: GalleryPost['isSensitive'];
+        };
+        res: GalleryPost;
     };
     'games/reversi/games': {
         req: TODO;
