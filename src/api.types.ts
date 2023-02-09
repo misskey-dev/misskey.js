@@ -323,7 +323,7 @@ export type Endpoints = {
 	'gallery/posts/create': { req: { title: GalleryPost['title']; description?: GalleryPost['description']; fileIds: GalleryPost['fileIds']; isSensitive?: GalleryPost['isSensitive'] }; res: GalleryPost; };
 	'gallery/posts/delete': { req: { postId: GalleryPost['id'] }; res: null; };
 	'gallery/posts/like': { req: { postId: GalleryPost['id'] }; res: null; };
-	'gallery/posts/show': { req: TODO; res: TODO; };
+	'gallery/posts/show': { req: { postId: GalleryPost['id'] }; res: GalleryPost; };
 	'gallery/posts/unlike': { req: TODO; res: TODO; };
 	'gallery/posts/update': { req: TODO; res: TODO; };
 
