@@ -1185,8 +1185,12 @@ export type Endpoints = {
         res: GalleryPost[];
     };
     'gallery/posts': {
-        req: TODO;
-        res: TODO;
+        req: {
+            limit?: number;
+            sinceId?: GalleryPost['id'];
+            untilId?: GalleryPost['id'];
+        };
+        res: GalleryPost[];
     };
     'gallery/posts/create': {
         req: TODO;

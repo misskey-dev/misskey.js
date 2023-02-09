@@ -319,7 +319,7 @@ export type Endpoints = {
 	// gallery
 	'gallery/featured': { req: null; res: GalleryPost[]; };
 	'gallery/popular': { req: null; res: GalleryPost[]; };
-	'gallery/posts': { req: TODO; res: TODO; };
+	'gallery/posts': { req: { limit?: number; sinceId?: GalleryPost['id']; untilId?: GalleryPost['id']; }; res: GalleryPost[]; };
 	'gallery/posts/create': { req: TODO; res: TODO; };
 	'gallery/posts/delete': { req: { postId: GalleryPost['id'] }; res: null; };
 	'gallery/posts/like': { req: TODO; res: TODO; };
