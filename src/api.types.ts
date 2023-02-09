@@ -318,7 +318,7 @@ export type Endpoints = {
 
 	// gallery
 	'gallery/featured': { req: null; res: GalleryPost[]; };
-	'gallery/popular': { req: TODO; res: TODO; };
+	'gallery/popular': { req: null; res: GalleryPost[]; };
 	'gallery/posts': { req: TODO; res: TODO; };
 	'gallery/posts/create': { req: TODO; res: TODO; };
 	'gallery/posts/delete': { req: { postId: GalleryPost['id'] }; res: null; };

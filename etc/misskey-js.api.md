@@ -1181,8 +1181,8 @@ export type Endpoints = {
         res: GalleryPost[];
     };
     'gallery/popular': {
-        req: TODO;
-        res: TODO;
+        req: null;
+        res: GalleryPost[];
     };
     'gallery/posts': {
         req: TODO;
