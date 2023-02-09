@@ -317,7 +317,7 @@ export type Endpoints = {
 	'following/requests/reject': { req: { userId: User['id'] }; res: null; };
 
 	// gallery
-	'gallery/featured': { req: TODO; res: TODO; };
+	'gallery/featured': { req: null; res: GalleryPost[]; };
 	'gallery/popular': { req: TODO; res: TODO; };
 	'gallery/posts': { req: TODO; res: TODO; };
 	'gallery/posts/create': { req: TODO; res: TODO; };

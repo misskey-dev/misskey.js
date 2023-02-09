@@ -1177,8 +1177,8 @@ export type Endpoints = {
         res: null;
     };
     'gallery/featured': {
-        req: TODO;
-        res: TODO;
+        req: null;
+        res: GalleryPost[];
     };
     'gallery/popular': {
         req: TODO;
