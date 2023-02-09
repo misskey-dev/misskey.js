@@ -1208,8 +1208,10 @@ export type Endpoints = {
         res: null;
     };
     'gallery/posts/like': {
-        req: TODO;
-        res: TODO;
+        req: {
+            postId: GalleryPost['id'];
+        };
+        res: null;
     };
     'gallery/posts/show': {
         req: TODO;
