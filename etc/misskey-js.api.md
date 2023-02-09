@@ -2224,7 +2224,20 @@ type FollowRequest = {
 };
 
 // @public (undocumented)
-type GalleryPost = TODO_2;
+type GalleryPost = {
+    id: ID;
+	createdAt: DateString;
+	updatedAt: DateString;
+	userId: User['id'];
+	user: User;
+	title: string;
+	description: string | null;
+	fileIds: DriveFile['id'][];
+	files: DriveFile[];
+	isSensitive: boolean;
+	likedCount: number;
+	isLiked?: boolean;
+};
 
 // @public (undocumented)
 type ID = string;
