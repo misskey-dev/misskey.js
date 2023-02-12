@@ -1860,6 +1860,8 @@ export type Endpoints = {
     'notifications/read': {
         req: {
             notificationId: Notification_2['id'];
+        } | {
+            notificationIds: Notification_2['id'][];
         };
         res: null;
     };
@@ -2174,6 +2176,7 @@ declare namespace entities {
         Notification_2 as Notification,
         MessagingMessage,
         CustomEmoji,
+        Policies,
         LiteInstanceMetadata,
         DetailedInstanceMetadata,
         InstanceMetadata,
@@ -2247,17 +2250,17 @@ type FollowRequest = {
 // @public (undocumented)
 type GalleryPost = {
     id: ID;
-	createdAt: DateString;
-	updatedAt: DateString;
-	userId: User['id'];
-	user: User;
-	title: string;
-	description: string | null;
-	fileIds: DriveFile['id'][];
-	files: DriveFile[];
-	isSensitive: boolean;
-	likedCount: number;
-	isLiked?: boolean;
+    createdAt: DateString;
+    updatedAt: DateString;
+    userId: User['id'];
+    user: User;
+    title: string;
+    description: string | null;
+    fileIds: DriveFile['id'][];
+    files: DriveFile[];
+    isSensitive: boolean;
+    likedCount: number;
+    isLiked?: boolean;
 };
 
 // @public (undocumented)
@@ -2348,6 +2351,7 @@ type LiteInstanceMetadata = {
         imageUrl: string;
     }[];
     translatorAvailable: boolean;
+    policies: Policies;
 };
 
 // @public (undocumented)
@@ -2494,6 +2498,11 @@ type Notification_2 = {
     userId: User['id'];
     note: Note;
 } | {
+    type: 'pollEnded';
+    user: User;
+    userId: User['id'];
+    note: Note;
+} | {
     type: 'follow';
     user: User;
     userId: User['id'];
@@ -2557,6 +2566,26 @@ type PageEvent = {
 
 // @public (undocumented)
 export const permissions: string[];
+
+// @public (undocumented)
+type Policies = {
+    gtlAvailable: boolean;
+    ltlAvailable: boolean;
+    canPublicNote: boolean;
+    canInvite: boolean;
+    canManageCustomEmojis: boolean;
+    canHideAds: boolean;
+    driveCapacityMb: number;
+    pinLimit: number;
+    antennaLimit: number;
+    wordMuteLimit: number;
+    webhookLimit: number;
+    clipLimit: number;
+    noteEachClipsLimit: number;
+    userListLimit: number;
+    userEachUserListsLimit: number;
+    rateLimitFactor: number;
+};
 
 // @public (undocumented)
 type ServerInfo = {
@@ -2714,7 +2743,7 @@ type UserSorting = '+follower' | '-follower' | '+createdAt' | '-createdAt' | '+u
 //
 // src/api.types.ts:16:32 - (ae-forgotten-export) The symbol "TODO" needs to be exported by the entry point index.d.ts
 // src/api.types.ts:18:25 - (ae-forgotten-export) The symbol "NoParams" needs to be exported by the entry point index.d.ts
-// src/api.types.ts:595:18 - (ae-forgotten-export) The symbol "ShowUserReq" needs to be exported by the entry point index.d.ts
+// src/api.types.ts:598:18 - (ae-forgotten-export) The symbol "ShowUserReq" needs to be exported by the entry point index.d.ts
 // src/streaming.types.ts:35:4 - (ae-forgotten-export) The symbol "FIXME" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
