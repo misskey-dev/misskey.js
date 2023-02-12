@@ -219,6 +219,11 @@ export type Notification = {
 	userId: User['id'];
 	note: Note;
 } | {
+	type: 'pollEnded';
+	user: User;
+	userId: User['id'];
+	note: Note;
+} | {
 	type: 'follow';
 	user: User;
 	userId: User['id'];
@@ -264,6 +269,25 @@ export type CustomEmoji = {
 	url: string;
 	category: string;
 	aliases: string[];
+};
+
+export type Policies = {
+	gtlAvailable: boolean;
+	ltlAvailable: boolean;
+	canPublicNote: boolean;
+	canInvite: boolean;
+	canManageCustomEmojis: boolean;
+	canHideAds: boolean;
+	driveCapacityMb: number;
+	pinLimit: number;
+	antennaLimit: number;
+	wordMuteLimit: number;
+	webhookLimit: number;
+	clipLimit: number;
+	noteEachClipsLimit: number;
+	userListLimit: number;
+	userEachUserListsLimit: number;
+	rateLimitFactor: number;
 };
 
 export type LiteInstanceMetadata = {
@@ -314,6 +338,7 @@ export type LiteInstanceMetadata = {
 		imageUrl: string;
 	}[];
 	translatorAvailable: boolean;
+	policies: Policies;
 };
 
 export type DetailedInstanceMetadata = LiteInstanceMetadata & {
