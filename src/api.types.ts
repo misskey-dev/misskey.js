@@ -82,13 +82,15 @@ export type Endpoints = {
 
 	// ap
 	'ap/get': { req: { uri: string; }; res: Record<string, any>; };
-	'ap/show': { req: { uri: string; }; res: {
-		type: 'Note';
-		object: Note;
-	} | {
-		type: 'User';
-		object: UserDetailed;
-	}; };
+	'ap/show': {
+		req: { uri: string; }; res: {
+			type: 'Note';
+			object: Note;
+		} | {
+			type: 'User';
+			object: UserDetailed;
+		};
+	};
 
 	// app
 	'app/create': { req: TODO; res: App; };
@@ -118,135 +120,151 @@ export type Endpoints = {
 	'channels/update': { req: TODO; res: TODO; };
 
 	// charts
-	'charts/active-users': { req: { span: 'day' | 'hour'; limit?: number; offset?: number | null; }; res: {
-		local: {
-			users: number[];
+	'charts/active-users': {
+		req: { span: 'day' | 'hour'; limit?: number; offset?: number | null; }; res: {
+			local: {
+				users: number[];
+			};
+			remote: {
+				users: number[];
+			};
 		};
-		remote: {
-			users: number[];
+	};
+	'charts/drive': {
+		req: { span: 'day' | 'hour'; limit?: number; offset?: number | null; }; res: {
+			local: {
+				decCount: number[];
+				decSize: number[];
+				incCount: number[];
+				incSize: number[];
+				totalCount: number[];
+				totalSize: number[];
+			};
+			remote: {
+				decCount: number[];
+				decSize: number[];
+				incCount: number[];
+				incSize: number[];
+				totalCount: number[];
+				totalSize: number[];
+			};
 		};
-	}; };
-	'charts/drive': { req: { span: 'day' | 'hour'; limit?: number; offset?: number | null; }; res: {
-		local: {
-			decCount: number[];
-			decSize: number[];
-			incCount: number[];
-			incSize: number[];
-			totalCount: number[];
-			totalSize: number[];
+	};
+	'charts/federation': {
+		req: { span: 'day' | 'hour'; limit?: number; offset?: number | null; }; res: {
+			instance: {
+				dec: number[];
+				inc: number[];
+				total: number[];
+			};
 		};
-		remote: {
-			decCount: number[];
-			decSize: number[];
-			incCount: number[];
-			incSize: number[];
-			totalCount: number[];
-			totalSize: number[];
-		};
-	}; };
-	'charts/federation': { req: { span: 'day' | 'hour'; limit?: number; offset?: number | null; }; res: {
-		instance: {
-			dec: number[];
-			inc: number[];
-			total: number[];
-		};
-	}; };
+	};
 	'charts/hashtag': { req: { span: 'day' | 'hour'; limit?: number; offset?: number | null; }; res: TODO; };
-	'charts/instance': { req: { span: 'day' | 'hour'; limit?: number; offset?: number | null; host: string; }; res: {
-		drive: {
-			decFiles: number[];
-			decUsage: number[];
-			incFiles: number[];
-			incUsage: number[];
-			totalFiles: number[];
-			totalUsage: number[];
-		};
-		followers: {
-			dec: number[];
-			inc: number[];
-			total: number[];
-		};
-		following: {
-			dec: number[];
-			inc: number[];
-			total: number[];
-		};
-		notes: {
-			dec: number[];
-			inc: number[];
-			total: number[];
-			diffs: {
-				normal: number[];
-				renote: number[];
-				reply: number[];
+	'charts/instance': {
+		req: { span: 'day' | 'hour'; limit?: number; offset?: number | null; host: string; }; res: {
+			drive: {
+				decFiles: number[];
+				decUsage: number[];
+				incFiles: number[];
+				incUsage: number[];
+				totalFiles: number[];
+				totalUsage: number[];
+			};
+			followers: {
+				dec: number[];
+				inc: number[];
+				total: number[];
+			};
+			following: {
+				dec: number[];
+				inc: number[];
+				total: number[];
+			};
+			notes: {
+				dec: number[];
+				inc: number[];
+				total: number[];
+				diffs: {
+					normal: number[];
+					renote: number[];
+					reply: number[];
+				};
+			};
+			requests: {
+				failed: number[];
+				received: number[];
+				succeeded: number[];
+			};
+			users: {
+				dec: number[];
+				inc: number[];
+				total: number[];
 			};
 		};
-		requests: {
-			failed: number[];
-			received: number[];
-			succeeded: number[];
-		};
-		users: {
-			dec: number[];
-			inc: number[];
-			total: number[];
-		};
-	}; };
+	};
 	'charts/network': { req: { span: 'day' | 'hour'; limit?: number; offset?: number | null; }; res: TODO; };
-	'charts/notes': { req: { span: 'day' | 'hour'; limit?: number; offset?: number | null; }; res: {
-		local: {
-			dec: number[];
-			inc: number[];
-			total: number[];
-			diffs: {
-				normal: number[];
-				renote: number[];
-				reply: number[];
+	'charts/notes': {
+		req: { span: 'day' | 'hour'; limit?: number; offset?: number | null; }; res: {
+			local: {
+				dec: number[];
+				inc: number[];
+				total: number[];
+				diffs: {
+					normal: number[];
+					renote: number[];
+					reply: number[];
+				};
+			};
+			remote: {
+				dec: number[];
+				inc: number[];
+				total: number[];
+				diffs: {
+					normal: number[];
+					renote: number[];
+					reply: number[];
+				};
 			};
 		};
-		remote: {
-			dec: number[];
-			inc: number[];
-			total: number[];
-			diffs: {
-				normal: number[];
-				renote: number[];
-				reply: number[];
-			};
+	};
+	'charts/user/drive': {
+		req: { span: 'day' | 'hour'; limit?: number; offset?: number | null; userId: User['id']; }; res: {
+			decCount: number[];
+			decSize: number[];
+			incCount: number[];
+			incSize: number[];
+			totalCount: number[];
+			totalSize: number[];
 		};
-	}; };
-	'charts/user/drive': { req: { span: 'day' | 'hour'; limit?: number; offset?: number | null; userId: User['id']; }; res: {
-		decCount: number[];
-		decSize: number[];
-		incCount: number[];
-		incSize: number[];
-		totalCount: number[];
-		totalSize: number[];
-	}; };
+	};
 	'charts/user/following': { req: { span: 'day' | 'hour'; limit?: number; offset?: number | null; userId: User['id']; }; res: TODO; };
-	'charts/user/notes': { req: { span: 'day' | 'hour'; limit?: number; offset?: number | null; userId: User['id']; }; res: {
-		dec: number[];
-		inc: number[];
-		total: number[];
-		diffs: {
-			normal: number[];
-			renote: number[];
-			reply: number[];
+	'charts/user/notes': {
+		req: { span: 'day' | 'hour'; limit?: number; offset?: number | null; userId: User['id']; }; res: {
+			dec: number[];
+			inc: number[];
+			total: number[];
+			diffs: {
+				normal: number[];
+				renote: number[];
+				reply: number[];
+			};
 		};
-	}; };
+	};
 	'charts/user/reactions': { req: { span: 'day' | 'hour'; limit?: number; offset?: number | null; userId: User['id']; }; res: TODO; };
-	'charts/users': { req: { span: 'day' | 'hour'; limit?: number; offset?: number | null; }; res: {
-		local: {
-			dec: number[];
-			inc: number[];
-			total: number[];
+	'charts/users': {
+		req: { span: 'day' | 'hour'; limit?: number; offset?: number | null; }; res: {
+			local: {
+				dec: number[];
+				inc: number[];
+				total: number[];
+			};
+			remote: {
+				dec: number[];
+				inc: number[];
+				total: number[];
+			};
 		};
-		remote: {
-			dec: number[];
-			inc: number[];
-			total: number[];
-		};
-	}; };
+	};
 
 	// clips
 	'clips/add-note': { req: TODO; res: TODO; };
@@ -284,26 +302,30 @@ export type Endpoints = {
 	'endpoints': { req: NoParams; res: string[]; };
 
 	// federation
-	'federation/dns': { req: { host: string; }; res: {
-		a: string[];
-		aaaa: string[];
-		cname: string[];
-		txt: string[];
-	}; };
+	'federation/dns': {
+		req: { host: string; }; res: {
+			a: string[];
+			aaaa: string[];
+			cname: string[];
+			txt: string[];
+		};
+	};
 	'federation/followers': { req: { host: string; limit?: number; sinceId?: Following['id']; untilId?: Following['id']; }; res: FollowingFolloweePopulated[]; };
 	'federation/following': { req: { host: string; limit?: number; sinceId?: Following['id']; untilId?: Following['id']; }; res: FollowingFolloweePopulated[]; };
-	'federation/instances': { req: {
-		host?: string | null;
-		blocked?: boolean | null;
-		notResponding?: boolean | null;
-		suspended?: boolean | null;
-		federating?: boolean | null;
-		subscribing?: boolean | null;
-		publishing?: boolean | null;
-		limit?: number;
-		offset?: number;
-		sort?: '+pubSub' | '-pubSub' | '+notes' | '-notes' | '+users' | '-users' | '+following' | '-following' | '+followers' | '-followers' | '+caughtAt' | '-caughtAt' | '+lastCommunicatedAt' | '-lastCommunicatedAt' | '+driveUsage' | '-driveUsage' | '+driveFiles' | '-driveFiles';
-	}; res: Instance[]; };
+	'federation/instances': {
+		req: {
+			host?: string | null;
+			blocked?: boolean | null;
+			notResponding?: boolean | null;
+			suspended?: boolean | null;
+			federating?: boolean | null;
+			subscribing?: boolean | null;
+			publishing?: boolean | null;
+			limit?: number;
+			offset?: number;
+			sort?: '+pubSub' | '-pubSub' | '+notes' | '-notes' | '+users' | '-users' | '+following' | '-following' | '+followers' | '-followers' | '+caughtAt' | '-caughtAt' | '+lastCommunicatedAt' | '-lastCommunicatedAt' | '+driveUsage' | '-driveUsage' | '+driveFiles' | '-driveFiles';
+		}; res: Instance[];
+	};
 	'federation/show-instance': { req: { host: string; }; res: Instance; };
 	'federation/update-remote-user': { req: { userId: User['id']; }; res: null; };
 	'federation/users': { req: { host: string; limit?: number; sinceId?: User['id']; untilId?: User['id']; }; res: UserDetailed[]; };
@@ -362,15 +384,17 @@ export type Endpoints = {
 	'i/get-word-muted-notes-count': { req: TODO; res: TODO; };
 	'i/import-following': { req: TODO; res: TODO; };
 	'i/import-user-lists': { req: TODO; res: TODO; };
-	'i/notifications': { req: {
-		limit?: number;
-		sinceId?: Notification['id'];
-		untilId?: Notification['id'];
-		following?: boolean;
-		markAsRead?: boolean;
-		includeTypes?: Notification['type'][];
-		excludeTypes?: Notification['type'][];
-	}; res: Notification[]; };
+	'i/notifications': {
+		req: {
+			limit?: number;
+			sinceId?: Notification['id'];
+			untilId?: Notification['id'];
+			following?: boolean;
+			markAsRead?: boolean;
+			includeTypes?: Notification['type'][];
+			excludeTypes?: Notification['type'][];
+		}; res: Notification[];
+	};
 	'i/page-likes': { req: TODO; res: TODO; };
 	'i/pages': { req: TODO; res: TODO; };
 	'i/pin': { req: { noteId: Note['id']; }; res: MeDetailed; };
@@ -389,37 +413,41 @@ export type Endpoints = {
 	'i/revoke-token': { req: TODO; res: TODO; };
 	'i/signin-history': { req: { limit?: number; sinceId?: Signin['id']; untilId?: Signin['id']; }; res: Signin[]; };
 	'i/unpin': { req: { noteId: Note['id']; }; res: MeDetailed; };
-	'i/update-email': { req: {
-		password: string;
-		email?: string | null;
-	}; res: MeDetailed; };
-	'i/update': { req: {
-		name?: string | null;
-		description?: string | null;
-		lang?: string | null;
-		location?: string | null;
-		birthday?: string | null;
-		avatarId?: DriveFile['id'] | null;
-		bannerId?: DriveFile['id'] | null;
-		fields?: {
-			name: string;
-			value: string;
-		}[];
-		isLocked?: boolean;
-		isExplorable?: boolean;
-		hideOnlineStatus?: boolean;
-		carefulBot?: boolean;
-		autoAcceptFollowed?: boolean;
-		noCrawle?: boolean;
-		isBot?: boolean;
-		isCat?: boolean;
-		injectFeaturedNote?: boolean;
-		receiveAnnouncementEmail?: boolean;
-		alwaysMarkNsfw?: boolean;
-		mutedWords?: string[][];
-		mutingNotificationTypes?: Notification['type'][];
-		emailNotificationTypes?: string[];
-	}; res: MeDetailed; };
+	'i/update-email': {
+		req: {
+			password: string;
+			email?: string | null;
+		}; res: MeDetailed;
+	};
+	'i/update': {
+		req: {
+			name?: string | null;
+			description?: string | null;
+			lang?: string | null;
+			location?: string | null;
+			birthday?: string | null;
+			avatarId?: DriveFile['id'] | null;
+			bannerId?: DriveFile['id'] | null;
+			fields?: {
+				name: string;
+				value: string;
+			}[];
+			isLocked?: boolean;
+			isExplorable?: boolean;
+			hideOnlineStatus?: boolean;
+			carefulBot?: boolean;
+			autoAcceptFollowed?: boolean;
+			noCrawle?: boolean;
+			isBot?: boolean;
+			isCat?: boolean;
+			injectFeaturedNote?: boolean;
+			receiveAnnouncementEmail?: boolean;
+			alwaysMarkNsfw?: boolean;
+			mutedWords?: string[][];
+			mutingNotificationTypes?: Notification['type'][];
+			emailNotificationTypes?: string[];
+		}; res: MeDetailed;
+	};
 	'i/user-group-invites': { req: TODO; res: TODO; };
 	'i/2fa/done': { req: TODO; res: TODO; };
 	'i/2fa/key-done': { req: TODO; res: TODO; };
@@ -437,21 +465,23 @@ export type Endpoints = {
 	'messaging/messages/read': { req: { messageId: MessagingMessage['id']; }; res: null; };
 
 	// meta
-	'meta': { req: { detail?: boolean; }; res: {
-		$switch: {
-			$cases: [[
-				{ detail: true; },
-				DetailedInstanceMetadata,
-			], [
-				{ detail: false; },
-				LiteInstanceMetadata,
-			], [
-				{ detail: boolean; },
-				LiteInstanceMetadata | DetailedInstanceMetadata,
-			]];
-			$default: LiteInstanceMetadata;
+	'meta': {
+		req: { detail?: boolean; }; res: {
+			$switch: {
+				$cases: [[
+					{ detail: true; },
+					DetailedInstanceMetadata,
+				], [
+						{ detail: false; },
+						LiteInstanceMetadata,
+					], [
+						{ detail: boolean; },
+						LiteInstanceMetadata | DetailedInstanceMetadata,
+					]];
+				$default: LiteInstanceMetadata;
+			};
 		};
-	}; };
+	};
 
 	// miauth
 	'miauth/gen-token': { req: TODO; res: TODO; };
@@ -469,24 +499,26 @@ export type Endpoints = {
 	'notes/children': { req: { noteId: Note['id']; limit?: number; sinceId?: Note['id']; untilId?: Note['id']; }; res: Note[]; };
 	'notes/clips': { req: TODO; res: TODO; };
 	'notes/conversation': { req: TODO; res: TODO; };
-	'notes/create': { req: {
-		visibility?: 'public' | 'home' | 'followers' | 'specified',
-		visibleUserIds?: User['id'][];
-		text?: null | string;
-		cw?: null | string;
-		viaMobile?: boolean;
-		localOnly?: boolean;
-		fileIds?: DriveFile['id'][];
-		replyId?: null | Note['id'];
-		renoteId?: null | Note['id'];
-		channelId?: null | Channel['id'];
-		poll?: null | {
-			choices: string[];
-			multiple?: boolean;
-			expiresAt?: null | number;
-			expiredAfter?: null | number;
-		};
-	}; res: { createdNote: Note }; };
+	'notes/create': {
+		req: {
+			visibility?: 'public' | 'home' | 'followers' | 'specified',
+			visibleUserIds?: User['id'][];
+			text?: null | string;
+			cw?: null | string;
+			viaMobile?: boolean;
+			localOnly?: boolean;
+			fileIds?: DriveFile['id'][];
+			replyId?: null | Note['id'];
+			renoteId?: null | Note['id'];
+			channelId?: null | Channel['id'];
+			poll?: null | {
+				choices: string[];
+				multiple?: boolean;
+				expiresAt?: null | number;
+				expiredAfter?: null | number;
+			};
+		}; res: { createdNote: Note };
+	};
 	'notes/delete': { req: { noteId: Note['id']; }; res: null; };
 	'notes/favorites/create': { req: { noteId: Note['id']; }; res: null; };
 	'notes/favorites/delete': { req: { noteId: Note['id']; }; res: null; };
@@ -515,7 +547,7 @@ export type Endpoints = {
 	// notifications
 	'notifications/create': { req: { body: string; header?: string | null; icon?: string | null; }; res: null; };
 	'notifications/mark-all-as-read': { req: NoParams; res: null; };
-	'notifications/read': { req: { notificationId: Notification['id'][]; }; res: null; };
+	'notifications/read': { req: { notificationIds: Notification['id'][]; }; res: null; };
 
 	// page-push
 	'page-push': { req: { pageId: Page['id']; event: string; var?: any; }; res: null; };
@@ -592,14 +624,16 @@ export type Endpoints = {
 	'users/report-abuse': { req: TODO; res: TODO; };
 	'users/search-by-username-and-host': { req: TODO; res: TODO; };
 	'users/search': { req: TODO; res: TODO; };
-	'users/show': { req: ShowUserReq | { userIds: User['id'][]; }; res: {
-		$switch: {
-			$cases: [[
-				{ userIds: User['id'][]; },
-				UserDetailed[],
-			]];
-			$default: UserDetailed;
+	'users/show': {
+		req: ShowUserReq | { userIds: User['id'][]; }; res: {
+			$switch: {
+				$cases: [[
+					{ userIds: User['id'][]; },
+					UserDetailed[],
+				]];
+				$default: UserDetailed;
+			};
 		};
-	}; };
+	};
 	'users/stats': { req: TODO; res: TODO; };
 };
